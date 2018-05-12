@@ -33,6 +33,25 @@ end
 
 ActiveRecord models use an `attributes` hash internally to keep attributes. EncryptablesAttributes overrides the accessor methods for the corresponding attributes and encrypts given values before storing them in the `attributes` hash and decrypts them when reading them from the `attributes` hash.
 
+In addition to setting the encryption key statically as shown in the example above, you can also read the key dynamically per model instance via a method call. It looks like this.
+
+```ruby
+class Message < ActiveRecord::Base
+  include EncryptableAttributes::Base
+  
+  secure_key :individual_message_key
+  secure_attrs :title, :body
+  
+  private
+  
+  	# Use this to build a message key from other model attributes
+	# or to set it from content fed from outside.
+    def individual_message_key
+	  'secret'
+	end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
