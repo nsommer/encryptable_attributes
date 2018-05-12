@@ -1,3 +1,4 @@
+## EncryptableAttributes 0.2.0 (May 12, 2018)
 * Added `CHANGELOG.md`
 * Speficy dependency versions
 * Reduce loaded dependencies
