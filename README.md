@@ -1,6 +1,6 @@
 # EncryptableAttributes [![Build Status](https://travis-ci.org/nsommer/encryptable_attributes.svg?branch=master)](https://travis-ci.org/nsommer/encryptable_attributes)
 
-With the `encryptable_attributes` gem, you transparently encrypt and decrypt attributes of an ActiveRecord model. It uses `ActiveSupport::MessageEncryptor` to encrypt and decrypt values and provides a simple class-level DSL for configuration.
+With the `encryptable_attributes` gem, you transparently encrypt and decrypt attributes of an ActiveRecord model. It uses [`ActiveSupport::MessageEncryptor`](http://api.rubyonrails.org/classes/ActiveSupport/MessageEncryptor.html) to encrypt and decrypt values and provides a simple class-level DSL for configuration.
 
 ## Installation
 
