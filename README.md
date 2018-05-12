@@ -43,12 +43,12 @@ class Message < ActiveRecord::Base
   secure_attrs :title, :body
   
   private
-  
-  	# Use this to build a message key from other model attributes
-	# or to set it from content fed from outside.
+
+    # Use this to build a message key from other model attributes
+    # or to set it from content fed from outside.
     def individual_message_key
-	  'secret'
-	end
+      'secret'
+    end
 end
 ```
 
