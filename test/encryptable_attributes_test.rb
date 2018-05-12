@@ -31,4 +31,13 @@ class EncryptableAttributesTest < Minitest::Test
 
     assert_equal @message[:title], 'top secret'
   end
+
+  def test_usage_of_dynamic_secure_key
+    user = User.new
+    user.salary = '$100k'
+
+    refute_equal user.send(:read_attribute, :title), '$100k'
+
+    assert_equal user.salary, '$100k'
+  end
 end

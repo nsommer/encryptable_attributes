@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_12_123720) do
+ActiveRecord::Schema.define(version: 2018_05_12_162331) do
 
   create_table "messages", force: :cascade do |t|
     t.string "title"
     t.string "body"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "salary"
   end
 
 end

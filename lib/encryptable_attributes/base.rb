@@ -1,9 +1,14 @@
 require 'active_support/concern'
+require 'active_support/core_ext/class'
 require 'active_support/message_encryptor'
 
 module EncryptableAttributes
   module Base
     extend ActiveSupport::Concern
+
+    included do
+      class_attribute :_secure_key
+    end
 
     # Override ActiveRecord accessor
     def [](key)
@@ -17,7 +22,7 @@ module EncryptableAttributes
 
     class_methods do
       def secure_key(key)
-        @@secure_key = key
+        self._secure_key = key
       end
 
       def secure_attrs(*attr_names)
@@ -47,12 +52,12 @@ module EncryptableAttributes
       end
 
       def static_or_dynamic_secure_key
-        if @@secure_key.is_a?(String)
-          @@secure_key
-        elsif @@secure_key.is_a?(Symbol)
-          send @@secure_key
+        if self._secure_key.is_a?(String)
+          self._secure_key
+        elsif self._secure_key.is_a?(Symbol)
+          send self._secure_key
         else
-          raise ArgumentError, "#{@@secure_key} bust be of type String or Symbol, but is of type #{@@secure_key.class}"
+          raise ArgumentError, "#{self._secure_key} bust be of type String or Symbol, but is of type #{self._secure_key.class}"
         end
       end
   end
