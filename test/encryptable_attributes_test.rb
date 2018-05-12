@@ -10,8 +10,8 @@ class EncryptableAttributesTest < Minitest::Test
   end
 
   def test_that_class_responds_to_setup_methods
-    assert @user.class.respond_to?(:secure_key)
-    assert @user.class.respond_to?(:secure_attrs)
+    assert_respond_to @user.class, :secure_key
+    assert_respond_to @user.class, :secure_attrs
   end
 
   def test_encryption_and_decryption_lifecycle_with_method_accessors
