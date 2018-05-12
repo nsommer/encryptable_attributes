@@ -1,3 +1,6 @@
+require 'active_support/concern'
+require 'active_support/message_encryptor'
+
 module EncryptableAttributes
   module Base
     extend ActiveSupport::Concern
