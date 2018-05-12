@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Nils Sommer"]
   spec.email         = ["mail@nilssommer.de"]
 
-  spec.summary       = "DSL for encryption and decryption of attributes in ActiveModel and ActiveRecord classes"
+  spec.summary       = "DSL for encryption and decryption of attributes in ActiveRecord models"
   spec.homepage      = "https://github.com/nsommer/encryptable_attributes"
   spec.license       = "MIT"
 
@@ -25,4 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "activerecord"
+  spec.add_development_dependency "standalone_migrations"
+  spec.add_development_dependency "sqlite3"
 end

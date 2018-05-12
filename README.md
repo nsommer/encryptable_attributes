@@ -1,8 +1,6 @@
 # EncryptableAttributes
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/encryptable_attributes`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+With the `encryptable_attributes` gem, you transparently encrypt and decrypt attributes of an ActiveRecord model. It uses `ActiveSupport::MessageEncryptor` to encrypt and decrypt values and provides a simple class-level DSL for configuration.
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Consider a simple ActiveRecord model `Message` with a `title` and a `body` field. To store those attributes' values encrypted, use the following code snippet.
+
+```ruby
+class Message < ActiveRecord::Base
+  include EncryptableAttributes::Base
+  
+  secure_key ENV.fetch('SECRET_KEY')
+  secure_attrs :title, :body
+end
+```
+
+ActiveRecord models use an `attributes` hash internally to keep attributes. EncryptablesAttributes overrides the accessor methods for the corresponding attributes and encrypts given values before storing them in the `attributes` hash and decrypts them when reading them from the `attributes` hash.
 
 ## Development
 
