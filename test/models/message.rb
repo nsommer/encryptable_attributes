@@ -1,6 +1,6 @@
-class User < ActiveRecord::Base
+class Message < ActiveRecord::Base
   include EncryptableAttributes::Base
 
   secure_key 'mysecret'
-  secure_attrs :secret_info
+  secure_attrs :title, :body
 end

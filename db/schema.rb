@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_05_12_123720) do
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "secret_info"
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
   end
 
 end

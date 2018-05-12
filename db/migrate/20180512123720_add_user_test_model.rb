@@ -1,8 +1,8 @@
 class AddUserTestModel < ActiveRecord::Migration[5.2]
   def change
-    create_table :users do |t|
-      t.string :name
-      t.string :secret_info
+    create_table :messages do |t|
+      t.string :title
+      t.string :body
     end
   end
 end

@@ -38,12 +38,22 @@ module EncryptableAttributes
       def new_crypt
         len    = ActiveSupport::MessageEncryptor.key_len
         salt   = SecureRandom.random_bytes(len)
-        key    = ActiveSupport::KeyGenerator.new(@@secure_key).generate_key(salt, len)
+        key    = ActiveSupport::KeyGenerator.new(static_or_dynamic_secure_key).generate_key(salt, len)
         @crypt = ActiveSupport::MessageEncryptor.new(key)
       end
 
       def crypt
         @crypt ||= new_crypt
+      end
+
+      def static_or_dynamic_secure_key
+        if @@secure_key.is_a?(String)
+          @@secure_key
+        elsif @@secure_key.is_a?(Symbol)
+          send @@secure_key
+        else
+          raise ArgumentError, "#{@@secure_key} bust be of type String or Symbol, but is of type #{@@secure_key.class}"
+        end
       end
   end
 end

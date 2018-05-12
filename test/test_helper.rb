@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'encryptable_attributes'
 require 'active_record'
-require 'models/user'
+require 'models/message'
 
 require 'minitest/autorun'
 
