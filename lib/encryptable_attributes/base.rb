@@ -45,6 +45,9 @@ module EncryptableAttributes
         salt   = SecureRandom.random_bytes(len)
         key    = ActiveSupport::KeyGenerator.new(static_or_dynamic_secure_key).generate_key(salt, len)
         @crypt = ActiveSupport::MessageEncryptor.new(key)
+        @crypt.rotate(key) # Ensure configuration is kept
+
+        @crypt
       end
 
       def crypt
