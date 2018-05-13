@@ -16,6 +16,7 @@ class EncryptableAttributesTest < Minitest::Test
 
   def test_encryption_and_decryption_lifecycle_with_method_accessors
     @message.title = 'top secret'
+    @message.save!
 
     # Use #send to read private value of attribute
     refute_equal @message.send(:read_attribute, :title), 'top secret'
@@ -25,6 +26,7 @@ class EncryptableAttributesTest < Minitest::Test
 
   def test_encryption_and_decryption_lifecycle_with_hash_accessors
     @message[:title] = 'top secret'
+    @message.save!
 
     # Use #send to read private value of attribute
     refute_equal @message.send(:read_attribute, :title), 'top secret'
@@ -35,6 +37,7 @@ class EncryptableAttributesTest < Minitest::Test
   def test_usage_of_dynamic_secure_key
     user = User.new
     user.salary = '$100k'
+    user.save!
 
     refute_equal user.send(:read_attribute, :title), '$100k'
 
