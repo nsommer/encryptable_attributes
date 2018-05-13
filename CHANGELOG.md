@@ -1,3 +1,6 @@
+* *FIX*: Rotate `ActiveSupport::MessageEncryptor` keys to ensure they are kept in case new configs are added
+* Added active_record as runtime dependency
+
 ## EncryptableAttributes 0.2.0 (May 12, 2018)
 * Added `CHANGELOG.md`
 * Speficy dependency versions
