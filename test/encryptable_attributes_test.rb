@@ -43,4 +43,14 @@ class EncryptableAttributesTest < Minitest::Test
 
     assert_equal user.salary, '$100k'
   end
+
+  def test_should_not_touch_secure_attribute_if_blank
+    assert_nil @message.title
+
+    @message.title = 'Value present'
+    assert_equal @message.title, 'Value present'
+
+    @message.title = nil
+    assert_nil @message.title
+  end
 end

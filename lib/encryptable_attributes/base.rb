@@ -28,11 +28,23 @@ module EncryptableAttributes
       def secure_attrs(*attr_names)
         attr_names.each do |attr_name|
           define_method :"#{attr_name}=" do |value|
-            write_attribute(attr_name, crypt.encrypt_and_sign(value))
+            if value.present?
+              write_attribute(attr_name, crypt.encrypt_and_sign(value))
+            else
+              # Allow to 'clear' attributes with nil
+              write_attribute(attr_name, value)
+            end
           end
 
           define_method :"#{attr_name}" do
-            crypt.decrypt_and_verify(read_attribute(attr_name))
+            possibly_encrypted_value = read_attribute(attr_name)
+
+            if possibly_encrypted_value.present?
+              crypt.decrypt_and_verify(possibly_encrypted_value)
+            else
+              # Don't try to decrypt blank fields (nil)
+              possibly_encrypted_value
+            end
           end
         end
       end
